@@ -18,4 +18,4 @@ To run project, follow these steps:
 
 
 # Contact
-For the complete version with more functionality, please contact us at mutyabakristaofficia@gmail.com or follow us on Twitter at @mtyalab.
+For the complete version with more functionality, please contact us at mutyabakristaofficia@gmail.com.
