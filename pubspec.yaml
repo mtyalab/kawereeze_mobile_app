@@ -1,0 +1,55 @@
+name: kawereeze
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_native_splash: ^2.2.16
+  introduction_screen: ^3.1.1
+  reactive_forms: ^14.1.0
+  pin_code_fields: ^7.4.0
+  flutter_bloc: ^8.1.1
+  http: ^0.13.5
+  bloc_concurrency: ^0.2.0
+  equatable: ^2.0.5
+  rxdart: ^0.27.1
+  intl: ^0.18.0
+
+#  http:
+#  equatable:
+#  bloc_concurrency:
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/logo/
+
+flutter_native_splash:
+  color: "#8318ff"
+  image: assets/logo/kw_logo.png
+
+
+  android_12:
+    image: assets/logo/kw_logo.png
+    color: "#8318ff"
+
+
+
+
