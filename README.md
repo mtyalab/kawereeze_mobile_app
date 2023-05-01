@@ -17,5 +17,3 @@ To run project, follow these steps:
 
 
 
-# Contact
-For the complete version with more functionality, please contact us at mutyabakristaofficia@gmail.com.
