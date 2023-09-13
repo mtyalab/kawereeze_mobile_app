@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 /// Set colors
-const primaryColor = Color(0xff8318ff);
+const primaryColor = Color(0xff690168);
 const primaryColorBk = Color(0xff7809f8);
 const primaryLight = Color(0xffBA99FF);
 const backgroundColor = Color(0xffF7F3FF);

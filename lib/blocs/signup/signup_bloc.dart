@@ -19,14 +19,14 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     });
   }
 
+
   Future<void> _signup(SignUpFormEvent event, Emitter<SignupState> emit) async {
     try {
       emit(this.state.copyWith(uiState: SignUpUIStage.LOADING));
       final user = await authRepository.signup(event.firstName, event.surname,
           event.phoneNumber, event.email, event.password);
-      if (user.code == 200) {
+      print(user);
         emit(this.state.copyWith(uiState: SignUpUIStage.SUCCESS, user: user));
-      }
     } catch (e) {
       emit(this.state.copyWith(uiState: SignUpUIStage.FAILURE, message: '$e'));
     }

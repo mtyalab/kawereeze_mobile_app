@@ -5,7 +5,6 @@ class User {
   String phoneNumber;
   String email;
   String password;
-  String code;
 
   User(
       {required this.id,
@@ -14,26 +13,25 @@ class User {
       required this.phoneNumber,
       required this.email,
       required this.password,
-      required this.code});
+      });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        id: json['id'],
-        firstName: json['firstName'],
+        id: json['_id'],
+        firstName: json['first_name'],
         surname: json['surname'],
-        phoneNumber: json['phoneNumber'],
+        phoneNumber: json['phone_number'],
         email: json['email'],
-        password: json['password'],
-        code: json['code']);
+        password: json['password']
+    );
   }
 
   Map<String, dynamic> toJson() => {
-        id: 'id',
-        firstName: 'firstName',
+        id: '_id',
+        firstName: 'first_name',
         surname: 'surname',
-        phoneNumber: 'phoneNumber',
+        phoneNumber: 'phone_number',
         email: 'email',
         password: 'password',
-        code: 'code'
       };
 }

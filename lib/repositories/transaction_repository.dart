@@ -7,7 +7,7 @@ import 'package:kawereeze/model/transaction.dart';
 import 'package:http/http.dart' as http;
 
 import '../utils/app_exceptions.dart';
-import 'constant_utils.dart';
+import '../utils/constant_utils.dart';
 
 abstract class TransactionService {
   Future<Transaction> getTransactions(String userId);

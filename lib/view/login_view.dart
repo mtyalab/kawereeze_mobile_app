@@ -69,7 +69,7 @@ class _LoginViewState extends State<LoginView> {
             children: [
               Container(
                 padding: const EdgeInsets.only(
-                    left: size100, right: size100, top: size40, bottom: 30),
+                    left: size100, right: size100, top: size40, bottom: size30),
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/background_image.png'),
