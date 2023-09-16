@@ -19,3 +19,7 @@ To run project, follow these steps:
 
 # Contact
 For the complete version with more functionality, please contact us at mutyabakristaofficia@gmail.com.
+
+
+# Create new splash screen
+flutter pub run flutter_native_splash:create

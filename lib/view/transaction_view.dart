@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kawereeze/repositories/transaction_repository.dart';
 import 'package:kawereeze/view/index.dart';
 import 'package:kawereeze/view/widget/index.dart';
+import 'package:kawereeze/view/widget/kw_block_table.dart';
 
 import '../blocs/transaction/transaction_bloc.dart';
 import '../model/user.dart';
@@ -24,9 +25,9 @@ class _TransactionViewState extends State<TransactionView> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          'Transactions',
-          style: kwTitleStyle,
+        title: Text(
+          'Transactions'.toUpperCase(),
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -41,9 +42,8 @@ class _TransactionViewState extends State<TransactionView> {
                         )));
           },
           icon: const Icon(
-            Icons.chevron_left_outlined,
+            Icons.arrow_back_ios_new_sharp,
             size: size30,
-            color: Colors.black,
           ),
         ),
       ),
@@ -58,258 +58,89 @@ class _TransactionViewState extends State<TransactionView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
+                KwBlockTable(
+                    payOffDate: '2023-08-24 23:52:47',
+                    orderNo: '3035569163',
+                    loanAmount: '100,000',
+                    term: '2 months',
+                    installments: '2',
+                    status: 'Paid Off'),
                 const SizedBox(
                   height: size10,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
+                KwBlockTable(
+                    payOffDate: '2023-08-24 23:52:47',
+                    orderNo: '3035569163',
+                    loanAmount: '100,000',
+                    term: '2 months',
+                    installments: '2',
+                    status: 'Paid Off'),
                 const SizedBox(
                   height: size10,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
+                KwBlockTable(
+                    payOffDate: '2023-08-24 23:52:47',
+                    orderNo: '3035569163',
+                    loanAmount: '100,000',
+                    term: '2 months',
+                    installments: '2',
+                    status: 'Paid Off'),
                 const SizedBox(
                   height: size10,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
+                KwBlockTable(
+                    payOffDate: '2023-08-24 23:52:47',
+                    orderNo: '3035569163',
+                    loanAmount: '100,000',
+                    term: '2 months',
+                    installments: '2',
+                    status: 'Paid Off'),
                 const SizedBox(
                   height: size10,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
+                KwBlockTable(
+                    payOffDate: '2023-08-24 23:52:47',
+                    orderNo: '3035569163',
+                    loanAmount: '100,000',
+                    term: '2 months',
+                    installments: '2',
+                    status: 'Paid Off'),
                 const SizedBox(
                   height: size10,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
+                KwBlockTable(
+                    payOffDate: '2023-08-24 23:52:47',
+                    orderNo: '3035569163',
+                    loanAmount: '100,000',
+                    term: '2 months',
+                    installments: '2',
+                    status: 'Paid Off'),
                 const SizedBox(
                   height: size10,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
+                KwBlockTable(
+                    payOffDate: '2023-08-24 23:52:47',
+                    orderNo: '3035569163',
+                    loanAmount: '100,000',
+                    term: '2 months',
+                    installments: '2',
+                    status: 'Paid Off'),
                 const SizedBox(
                   height: size10,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
+                KwBlockTable(
+                    payOffDate: '2023-08-24 23:52:47',
+                    orderNo: '3035569163',
+                    loanAmount: '100,000',
+                    term: '2 months',
+                    installments: '2',
+                    status: 'Paid Off'),
                 const SizedBox(
                   height: size10,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
-                const SizedBox(
-                  height: size10,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
-                ),
-                const SizedBox(
-                  height: size10,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyIdentityView(
-                                  type: 'reversal',
-                                  user: widget.user,
-                                )));
-                  },
-                  child: const KwTable(
-                    placeholder: 'assets/recipient.jpg',
-                    status: 'successful',
-                    recipientName: 'Krista Mutyaba',
-                    transactionDate: '10 days ago',
-                    transactionNumber: '3035569163',
-                    amount: 1000000,
-                  ),
                 ),
               ],
             ),
           ),
-        ),
-      ),
-      floatingActionButton: KwFloatingButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProfileView()));
-        },
-        icon: const Icon(
-          Icons.account_circle_outlined,
-          color: Colors.white,
         ),
       ),
     );

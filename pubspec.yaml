@@ -23,6 +23,10 @@ dependencies:
   equatable: ^2.0.5
   rxdart: ^0.27.1
   intl: ^0.18.0
+  currency_text_input_formatter: ^2.1.10
+  flutter_custom_selector: ^0.0.3
+  floating_bottom_navigation_bar: ^1.5.2
+  salomon_bottom_bar: ^3.3.2
 
 #  http:
 #  equatable:
@@ -42,13 +46,13 @@ flutter:
     - assets/logo/
 
 flutter_native_splash:
-  color: "#8318ff"
-  image: assets/logo/kw_logo.png
+  color: "#F7F3FF"
+  image: assets/logo/kw_logo_splash_screen.png
 
 
   android_12:
-    image: assets/logo/kw_logo.png
-    color: "#8318ff"
+    image: assets/logo/kw_logo_splash_screen.png
+    color: "#F7F3FF"
 
 
 
