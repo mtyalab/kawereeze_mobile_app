@@ -27,19 +27,14 @@ class _TransactionViewState extends State<TransactionView> {
         elevation: 0,
         title: Text(
           'Transactions'.toUpperCase(),
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: backgroundColor,
         leading: KwIconButton(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => WelcomeView(
-                          user: widget.user,
-                        )));
+            Navigator.of(context).pop();
           },
           icon: const Icon(
             Icons.arrow_back_ios_new_sharp,

@@ -27,6 +27,7 @@ dependencies:
   flutter_custom_selector: ^0.0.3
   floating_bottom_navigation_bar: ^1.5.2
   salomon_bottom_bar: ^3.3.2
+  file_picker: ^4.1.6
 
 #  http:
 #  equatable:

@@ -11,6 +11,8 @@ const lightGreen = Colors.white;
 const red = Colors.white;
 
 /// Set sizes
+const size0 = 0.0;
+const size1 = 1.0;
 const size2 = 2.0;
 const size4 = 4.0;
 const size5 = 5.0;
@@ -104,6 +106,33 @@ final elevatedMinButtonLightStyle = ElevatedButton.styleFrom(
     padding: const EdgeInsets.all(size10),
     backgroundColor: primaryLight,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)));
+
+final primaryButtonStyleDark = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+    elevation: MaterialStateProperty.all<double>(0.0),
+    shape: MaterialStateProperty.all<
+        RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+            borderRadius:
+            BorderRadius.circular(size4))));
+
+final primaryButtonStyleLight = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+    elevation: MaterialStateProperty.all<double>(0.0),
+    shape: MaterialStateProperty.all<
+        RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+            borderRadius:
+            BorderRadius.circular(size30))));
+
+final primaryButtonStyle = ButtonStyle(
+    backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+    elevation: MaterialStateProperty.all<double>(0.0),
+    shape: MaterialStateProperty.all<
+        RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+            borderRadius:
+            BorderRadius.circular(size4))));
 
 final elevatedMinOutlineButtonStyle = ElevatedButton.styleFrom(
     padding: const EdgeInsets.all(size10),

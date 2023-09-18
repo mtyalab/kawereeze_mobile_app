@@ -32,7 +32,7 @@ class _ProfileViewState extends State<ProfileView> {
           centerTitle: true,
           title: Text(
             'Profile'.toUpperCase(),
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
 
           ),
           automaticallyImplyLeading: false,

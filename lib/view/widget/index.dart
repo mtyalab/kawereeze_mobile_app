@@ -7,4 +7,4 @@ export 'kw_table.dart';
 export 'kw_text_input.dart';
 export 'kw_title.dart';
 export 'kw_security_code_input.dart';
-
+export 'kw_amortization_schedule_widget.dart';

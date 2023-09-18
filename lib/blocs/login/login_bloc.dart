@@ -36,7 +36,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } catch (e) {
       emit(this
           .state
-          .copyWith(loginUIState: LoginUIState.Failed, message: '$e'));
+          .copyWith(loginUIState: LoginUIState.Failed, message: 'Invalid login details'));
     }
   }
 }

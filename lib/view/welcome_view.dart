@@ -1,5 +1,7 @@
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_selector/widget/flutter_single_select.dart';
+import 'package:kawereeze/view/amortization_view.dart';
 import 'package:kawereeze/view/index.dart';
 import 'package:kawereeze/view/widget/index.dart';
 import 'package:intl/intl.dart';
@@ -8,6 +10,7 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../model/user.dart';
 import '../theme/theme.dart';
+import '../utils/custom_alerts.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({Key? key, required this.user}) : super(key: key);
@@ -19,12 +22,13 @@ class WelcomeView extends StatefulWidget {
 
 class _WelcomeViewState extends State<WelcomeView> {
   int _index = 0;
+  var amount;
+  var dueDate;
 
   @override
   Widget build(BuildContext context) {
-
     DateTime today = DateTime.now();
-
+    double deviceWidth = MediaQuery.of(context).size.width;
 
     return WillPopScope(
       onWillPop: () async {
@@ -33,8 +37,9 @@ class _WelcomeViewState extends State<WelcomeView> {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Home'.toUpperCase(),
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            title: Text(
+              'Home'.toUpperCase(),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             automaticallyImplyLeading: false,
             centerTitle: true,
@@ -46,10 +51,14 @@ class _WelcomeViewState extends State<WelcomeView> {
             actions: [
               IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginView()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginView()));
                 },
-                icon:
-                const Icon(Icons.logout,),
+                icon: const Icon(
+                  Icons.logout,
+                ),
               ),
             ],
           ),
@@ -92,42 +101,87 @@ class _WelcomeViewState extends State<WelcomeView> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: size20, top: size10, bottom: 0),
-                  child: KwTitle(title: 'LOAN SIMULATOR', type: 'other', ),
+                  padding: const EdgeInsets.only(
+                      left: size20, top: size10, bottom: 0),
+                  child: KwTitle(
+                    title: 'LOAN SIMULATOR',
+                    type: 'other',
+                  ),
                 ),
                 KwCardLg(
                   content: [
-                    SizedBox(height: 3,),
+                    SizedBox(
+                      height: 3,
+                    ),
                     KwTitle(
                       title: 'How much do you want to borrow?',
-                      type: 'other',),
-                    KwSelector(
-                      title: 'UGX',
-                      dataString: List<String>.generate(
-                        (1000000 - 100000) ~/ 50000 + 1,
-                            (index) => (100000 + (index * 50000)).toString(),
+                      type: 'other',
+                    ),
+                    SizedBox(
+                      width: deviceWidth,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const SizedBox(
+                            height: size15,
+                          ),
+                          CustomSingleSelectField<String>(
+                            items: List<String>.generate(
+                              (1000000 - 100000) ~/ 50000 + 1,
+                              (index) => (100000 + (index * 50000)).toString(),
+                            ),
+                            title: "UGX",
+                            initialValue: amount,
+                            onSelectionDone: (value) {
+                              setState(() {
+                                amount = value;
+                              });
+                            },
+                            itemAsString: (item) => item,
+                          ),
+                          const SizedBox(
+                            height: size20,
+                          ),
+                        ],
                       ),
                     ),
-
                     KwTitle(
                       title: 'When do you expect to settle your Loan?',
-                      type: 'other',),
-                    KwSelector(
-                      title: 'MONTHS',
-                      dataString: [
-                        "1",
-                        "2",
-                        "3",
-                        "4",
-                        "5",
-                        "6"
-                      ],
+                      type: 'other',
+                    ),
+                    SizedBox(
+                      width: deviceWidth,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const SizedBox(
+                            height: size15,
+                          ),
+                          CustomSingleSelectField<String>(
+                            items: ["1", "2", "3", "4", "5", "6"],
+                            title: "MONTHS",
+                            initialValue: dueDate,
+                            onSelectionDone: (value) {
+                              setState(() {
+                                dueDate = value;
+                              });
+                            },
+                            itemAsString: (item) => item,
+                          ),
+                          const SizedBox(
+                            height: size20,
+                          ),
+                        ],
+                      ),
                     ),
                     KwTitle(
                       title: 'What interest rate is offered?',
-                      type: 'other',),
+                      type: 'other',
+                    ),
                     Text("We offer an interest rate of 2% Per Month Only"),
-                    SizedBox(height: size10,),
+                    SizedBox(
+                      height: size10,
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -139,7 +193,48 @@ class _WelcomeViewState extends State<WelcomeView> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
+                        if (amount == null) {
+                          CustomAlerts().asyncSimpleAlertDialog(
+                              alignment: Alignment.center,
+                              context: context,
+                              children: [
+                                CustomAlerts().notificationDialog(
+                                    context: context,
+                                    imageUrl: "assets/error.png",
+                                    title: "Warning",
+                                    subtitle: "Loan amount is required!",
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    type: "table-heading",
+                                    buttonLabel: "Ok")
+                              ]);
+                        } else if (dueDate == null) {
+                          CustomAlerts().asyncSimpleAlertDialog(
+                              alignment: Alignment.center,
+                              context: context,
+                              children: [
+                                CustomAlerts().notificationDialog(
+                                    context: context,
+                                    imageUrl: "assets/error.png",
+                                    title: "Warning",
+                                    subtitle: "Settlement period is required!",
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    type: "table-heading",
+                                    buttonLabel: "Ok")
+                              ]);
 
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AmortizationView(
+                                      amount: amount,
+                                      dueDate: dueDate,
+                                      user: widget.user)));
+                        }
                       },
                       style: elevatedMinButtonStyle,
                       child: Text(
@@ -158,31 +253,45 @@ class _WelcomeViewState extends State<WelcomeView> {
                     children: [
                       Image.asset(
                         'assets/gift.png',
-                        width: 80,
-                        height: 80,
+                        width: 50,
+                        height: 50,
                       ),
                       KwTitle(
-                        title: 'Maintaining a good record will lead\n to an agreed discount on your loan.',
-                        type: 'other',),
+                        title:
+                            'Maintaining a good record will lead\n to an agreed discount on your loan.',
+                        type: 'other',
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(height: size10,)
+                SizedBox(
+                  height: size10,
+                )
               ],
             ),
           ),
           bottomNavigationBar: SalomonBottomBar(
             backgroundColor: Colors.white,
             onTap: (int val) => setState(() => {
-              _index = val,
-              if (_index == 0) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => WelcomeView(user: widget.user)))
-              } else if (_index == 1) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProfileView(user: widget.user,)))
-              }
-            }),
+                  _index = val,
+                  if (_index == 0)
+                    {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  WelcomeView(user: widget.user)))
+                    }
+                  else if (_index == 1)
+                    {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileView(
+                                    user: widget.user,
+                                  )))
+                    }
+                }),
             currentIndex: _index,
             items: [
               SalomonBottomBarItem(
