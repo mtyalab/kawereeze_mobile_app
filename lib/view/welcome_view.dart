@@ -1,11 +1,9 @@
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_selector/widget/flutter_single_select.dart';
 import 'package:kawereeze/view/amortization_view.dart';
 import 'package:kawereeze/view/index.dart';
 import 'package:kawereeze/view/widget/index.dart';
 import 'package:intl/intl.dart';
-import 'package:kawereeze/view/widget/kw_selector.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../model/user.dart';
@@ -25,10 +23,12 @@ class _WelcomeViewState extends State<WelcomeView> {
   var amount;
   var dueDate;
 
+
   @override
   Widget build(BuildContext context) {
     DateTime today = DateTime.now();
     double deviceWidth = MediaQuery.of(context).size.width;
+    bool isKycComplete = false;
 
     return WillPopScope(
       onWillPop: () async {
@@ -108,6 +108,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                     type: 'other',
                   ),
                 ),
+                if(isKycComplete == true)
                 KwCardLg(
                   content: [
                     SizedBox(
@@ -184,6 +185,37 @@ class _WelcomeViewState extends State<WelcomeView> {
                     ),
                   ],
                 ),
+                if(isKycComplete == false)
+                  KwCardLg(
+                    content: [
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Row(
+                        children: [
+                          KwTitle(
+                            title: 'Loan Amount (UGX)',
+                            type: 'other',
+                          ),
+                          Spacer(),
+                          KwTitle(
+                            title: 'Due Date',
+                            type: 'other',
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text('40,000', style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500),),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text('2023-08-24 23:52:47', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 const SizedBox(
                   width: size5,
                 ),
@@ -193,6 +225,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
+                      if (isKycComplete == true) {
                         if (amount == null) {
                           CustomAlerts().asyncSimpleAlertDialog(
                               alignment: Alignment.center,
@@ -235,10 +268,13 @@ class _WelcomeViewState extends State<WelcomeView> {
                                       dueDate: dueDate,
                                       user: widget.user)));
                         }
+                      } else {
+
+                      }
                       },
                       style: elevatedMinButtonStyle,
                       child: Text(
-                        'Submit Request',
+                        isKycComplete == true ? 'Submit Request' : 'Repay Loan',
                         style: const TextStyle(color: Colors.white),
                       ),
                     ),

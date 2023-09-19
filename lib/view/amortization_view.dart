@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_selector/widget/flutter_single_select.dart';
 import 'package:kawereeze/repositories/verification_repository.dart';
 import 'package:kawereeze/theme/theme.dart';
+import 'package:kawereeze/view/welcome_view.dart';
 import 'package:kawereeze/view/widget/index.dart';
 
 import '../blocs/verification/verification_bloc.dart';
@@ -287,18 +288,47 @@ class _AmortizationViewState extends State<AmortizationView> {
                                                           primaryButtonStyle,
                                                           onPressed: () {
 
-                                                            atsContext
-                                                                .read<
-                                                                VerificationBloc>()
-                                                                .add(AddIdentityEvent(
-                                                                userId: widget.user!.id,
-                                                                idType:
-                                                                idType,
-                                                                selfieUrl:
-                                                                _selfieController
-                                                                    .text,
-                                                                idUrl:
-                                                                _idController.text));
+                                                            CustomAlerts()
+                                                                .asyncSimpleAlertDialog(
+                                                                alignment:
+                                                                Alignment.center,
+                                                                context: context,
+                                                                children: [
+                                                                  CustomAlerts()
+                                                                      .notificationDialog(
+                                                                      context: context,
+                                                                      imageUrl:
+                                                                      "assets/success.png",
+                                                                      title:
+                                                                      "Hooray!!!",
+                                                                      subtitle:
+                                                                      "Loan request has successfully\n been submitted.\n"
+                                                                          " Give up to 24 hours in order\n for it to be processed",
+                                                                      onPressed: () {
+                                                                        Navigator.pushReplacement(
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                                builder: (context) => WelcomeView(
+                                                                                  user: widget.user,
+                                                                                )));
+                                                                      },
+                                                                      type:
+                                                                      "table-heading",
+                                                                      buttonLabel: "Ok"),
+                                                                ]);
+
+                                                            // atsContext
+                                                            //     .read<
+                                                            //     VerificationBloc>()
+                                                            //     .add(AddIdentityEvent(
+                                                            //     userId: widget.user!.id,
+                                                            //     idType:
+                                                            //     idType,
+                                                            //     selfieUrl:
+                                                            //     _selfieController
+                                                            //         .text,
+                                                            //     idUrl:
+                                                            //     _idController.text));
                                                           },
                                                           child: const Padding(
                                                             padding:

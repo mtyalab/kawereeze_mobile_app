@@ -1,8 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../theme/theme.dart';
-import '../../utils/helper.dart';
 
 class KwAmortizationScheduleWidget extends StatelessWidget {
   const KwAmortizationScheduleWidget({
@@ -18,7 +19,7 @@ class KwAmortizationScheduleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final monthlyInterestRate = interestRate / 100 / 12;
+    final monthlyInterestRate = interestRate / 12 / 100;
     double remainingBalance = loanAmount;
 
     List<Map<String, dynamic>> amortizationSchedule = [];
@@ -30,7 +31,9 @@ class KwAmortizationScheduleWidget extends StatelessWidget {
 
     for (int month = 1; month <= loanTermMonths; month++) {
       final interestPayment = remainingBalance * monthlyInterestRate;
-      final principalPayment = loanAmount / loanTermMonths - interestPayment;
+      // final principalPayment = loanAmount / loanTermMonths - interestPayment;
+      final principalPayment = (loanAmount * monthlyInterestRate) /
+          (1 - (1 / (pow(1 + monthlyInterestRate, loanTermMonths))));
       remainingBalance -= principalPayment;
 
       final amortizationEntry = {
