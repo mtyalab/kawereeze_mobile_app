@@ -100,6 +100,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                     ],
                   ),
                 ),
+                if(isKycComplete == true)
                 Padding(
                   padding: const EdgeInsets.only(
                       left: size20, top: size10, bottom: 0),

@@ -123,21 +123,21 @@ class KwAmortizationScheduleWidget extends StatelessWidget {
                     height: 0.5,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: size15, top: size10, bottom: size10, right: size15),
-                  child: Row(
-                    children: [
-                      const Text(
-                        'Monthly Payment',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, color: Colors.black),
-                      ),
-                      const Spacer(),
-                      Text('${currencyFormatter.format(loanAmount / loanTermMonths)}')
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(
+                //       left: size15, top: size10, bottom: size10, right: size15),
+                //   child: Row(
+                //     children: [
+                //       const Text(
+                //         'Monthly Payment',
+                //         style: TextStyle(
+                //             fontWeight: FontWeight.w500, color: Colors.black),
+                //       ),
+                //       const Spacer(),
+                //       Text('${currencyFormatter.format(loanAmount / loanTermMonths)}')
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
