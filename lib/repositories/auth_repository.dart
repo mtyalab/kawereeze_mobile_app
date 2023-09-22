@@ -10,10 +10,10 @@ abstract class AuthService {
   Future<User> login(String username, String password);
   Future<User> signup(String firstName, String surname, String phoneNumber,
       String email, String password);
-  Future<User> passwordResetRequest(String email);
+  Future<dynamic> passwordResetRequest(String email);
   Future<dynamic> passwordResetRequestVerification(
       String otp, String accountIdentifier);
-  Future<User> newPassword(String username, String password);
+  Future<dynamic> newPassword(String username, String password);
 }
 
 class AuthRepository implements AuthService {
@@ -74,32 +74,81 @@ class AuthRepository implements AuthService {
   }
 
   @override
-  Future<User> passwordResetRequest(String? email) async {
-    Uri uri = Uri.parse('$baseUrl/v0/password-reset-request');
-    Response response = await http.post(uri, body: {
-      'email': email,
-    });
+  Future<dynamic> passwordResetRequest(String? email) async {
+    Uri uri = Uri.parse('$baseUrl/v0/auth/user/password-reset');
 
-    return User.fromJson(jsonDecode(response.body));
+    Map<String, dynamic> payload = {
+      'username': email,
+    };
+
+    String requestBody = jsonEncode(payload);
+
+    Map<String, String> headers = {
+      "Content-Type": "application/json"
+    };
+
+    Response response = await http.post(uri,
+        headers: headers,
+        body: requestBody);
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    }else {
+      throw FailureException(message: jsonDecode(response.body));
+
+    }
   }
 
   @override
   Future<dynamic> passwordResetRequestVerification(
       String otp, String? accountIdentifier) async {
-    Uri uri = Uri.parse('$baseUrl/v1/password-reset-request-verification');
-    Response response = await http.post(uri, body: {
+    Uri uri = Uri.parse('$baseUrl/v0/auth/user/verify-otp/${accountIdentifier}');
+
+    Map<String, dynamic> payload =  {
       'otp': otp,
-      'accountIdentifier': accountIdentifier,
-    });
-    return User.fromJson(jsonDecode(response.body));
+    };
+
+    String requestBody = jsonEncode(payload);
+
+    Map<String, String> headers = {
+      "Content-Type": "application/json"
+    };
+
+    Response response = await http.post(
+        uri,
+        headers: headers,
+        body: requestBody);
+    if  (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw FailureException(message: jsonDecode(response.body));
+    }
+
   }
 
   @override
-  Future<User> newPassword(String? username, String? password) async {
-    Uri uri = Uri.parse('$baseUrl/v1/update-password');
-    Response response =
-        await http.post(uri, body: {'email': username, 'password': password});
+  Future<dynamic> newPassword(String? username, String? password) async {
+    Uri uri = Uri.parse('$baseUrl/v0/auth/user/update-password/${username}');
 
-    return User.fromJson(jsonDecode(response.body));
+    Map<String, dynamic> payload =  {
+      'password': password,
+    };
+
+    String requestBody = jsonEncode(payload);
+
+    Map<String, String> headers = {
+      "Content-Type": "application/json"
+    };
+
+
+    Response response =
+        await http.put(uri,
+            headers: headers,
+            body: requestBody);
+
+    if  (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw FailureException(message: jsonDecode(response.body));
+    }
   }
 }

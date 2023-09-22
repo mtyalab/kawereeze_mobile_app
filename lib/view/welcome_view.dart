@@ -28,7 +28,7 @@ class _WelcomeViewState extends State<WelcomeView> {
   Widget build(BuildContext context) {
     DateTime today = DateTime.now();
     double deviceWidth = MediaQuery.of(context).size.width;
-    bool isKycComplete = false;
+    bool isKycComplete = true;
 
     return WillPopScope(
       onWillPop: () async {

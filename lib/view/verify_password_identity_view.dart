@@ -38,10 +38,18 @@ class _VerifyPasswordIdentityViewState
       backgroundColor: backgroundColor,
       body: Center(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Identity Verification',
-              style: kwTitle5Style,
+            Padding(
+              padding: const EdgeInsets.only(left: size20, bottom: size20, top: size15),
+              child: const Icon(Icons.email_outlined, size: size50,color: primaryColor,),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: size20),
+              child: const Text(
+                'Confirm your Identity',
+                style: kwTitle5Style,
+              ),
             ),
             Expanded(
               child: BlocProvider<PasswordResetBloc>(
@@ -69,7 +77,7 @@ class _VerifyPasswordIdentityViewState
                                   context: context,
                                   imageUrl: "assets/error.png",
                                   title: "Warning",
-                                  subtitle: state.message,
+                                  subtitle: "Invalid code",
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
@@ -130,6 +138,7 @@ class _VerifyPasswordIdentityViewState
                     }
                   },
                   child: KwSecurityCodeInput(
+                    username: widget.username,
                     resendOtp: () {
                       passwordResetBloc.add(ResendPasswordResetRequestEvent(
                           email: widget.username));
@@ -137,6 +146,7 @@ class _VerifyPasswordIdentityViewState
                     type: widget.type,
                     onCompleted: (v) async {
                       // == Add alert
+
                       passwordResetBloc.add(VerifyPasswordResetRequestEvent(
                           otp: v.toString(),
                           accountIdentifier: widget.username));

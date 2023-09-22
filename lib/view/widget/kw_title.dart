@@ -25,7 +25,7 @@ class KwTitle extends StatelessWidget {
         ? Text(
       '$title',
       style: kwTitleStyle,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.left,
     ):
     (type == 'other')
         ? Text(

@@ -136,43 +136,44 @@ class _RequestPasswordResetViewState extends State<RequestPasswordResetView> {
                           const SizedBox(
                             height: size5,
                           ),
-                          Row(
+                          Column(
                             children: [
-                              Expanded(
-                                child: OutlinedButton(
-                                  onPressed: () {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const LoginView()),
-                                    );
-                                  },
-                                  style: elevatedMinOutlineButtonStyle,
-                                  child: const Text(
-                                    "Log In",
-                                    style: TextStyle(color: primaryColor),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: size5,
-                              ),
-                              Expanded(
+                              SizedBox(
+                                width: double.infinity,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    BlocProvider.of<PasswordResetBloc>(context)
-                                        .add(PasswordResetRequestEvent(
-                                            email: form.value['email']
-                                                .toString()));
+                                    if(form.value['username']
+                                        .toString().isEmpty || form.value['username'] == null) {
+                                      CustomAlerts().asyncSimpleAlertDialog(
+                                          alignment: Alignment.center,
+                                          context: context,
+                                          children: [
+                                            CustomAlerts().notificationDialog(
+                                                context: context,
+                                                imageUrl: "assets/error.png",
+                                                title: "Warning",
+                                                subtitle: "Field required",
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                type: "table-heading",
+                                                buttonLabel: "Ok")
+                                          ]);
+                                    } else {
+                                      BlocProvider.of<PasswordResetBloc>(context)
+                                          .add(PasswordResetRequestEvent(
+                                          email: form.value['username']
+                                              .toString()));
+                                    }
+
                                   },
                                   style: elevatedMinButtonStyle,
                                   child: const Text(
-                                    "Next",
+                                    "Submit email",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
-                              ),
+                              )
                             ],
                           ),
                           const SizedBox(

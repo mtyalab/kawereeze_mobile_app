@@ -229,7 +229,7 @@ class _RecoverAccountViewState extends State<RecoverAccountView> {
                                       },
                                       style: elevatedMinOutlineButtonStyle,
                                       child: const Text(
-                                        "Log In",
+                                        "Cancel",
                                         style: TextStyle(color: primaryColor),
                                       ),
                                     ),

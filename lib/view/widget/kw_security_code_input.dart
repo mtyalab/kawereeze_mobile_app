@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kawereeze/theme/theme.dart';
+import 'package:kawereeze/utils/helper.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../welcome_view.dart';
@@ -10,11 +11,12 @@ import 'kw_title.dart';
 
 class KwSecurityCodeInput extends StatefulWidget {
   const KwSecurityCodeInput(
-      {Key? key, required this.type, required this.onCompleted, required this.resendOtp})
+      {Key? key, required this.type, required this.onCompleted, required this.resendOtp, this.username})
       : super(key: key);
   final String type;
   final ValueChanged<String> onCompleted;
   final VoidCallback resendOtp;
+  final String? username;
 
   @override
   State<KwSecurityCodeInput> createState() => _KwSecurityCodeInputState();
@@ -54,10 +56,10 @@ class _KwSecurityCodeInputState extends State<KwSecurityCodeInput> {
             children: <Widget>[
               const SizedBox(height: size10),
               Padding(
-                  padding: const EdgeInsets.only(left: size30, right: size30),
+                  padding: const EdgeInsets.only(left: size20, right: size30),
                   child: KwTitle(
                       title:
-                          'Please enter the 5-digit security code sent to your ${widget.type == 'signup' ? 'email address' : 'number'}',
+                          'Please enter the 6-digit security code sent to  ${Helper.maskEmail(widget.username)}',
                       type: 'otp-verification')),
               const SizedBox(
                 height: size20,
@@ -66,7 +68,7 @@ class _KwSecurityCodeInputState extends State<KwSecurityCodeInput> {
                 key: formKey,
                 child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: size5, horizontal: size50),
+                        vertical: size5, horizontal: size20),
                     child: PinCodeTextField(
                       autoFocus: true,
                       appContext: context,
@@ -74,7 +76,7 @@ class _KwSecurityCodeInputState extends State<KwSecurityCodeInput> {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
-                      length: 5,
+                      length: 6,
                       obscureText: false,
                       blinkWhenObscuring: false,
                       animationType: AnimationType.fade,
@@ -115,25 +117,24 @@ class _KwSecurityCodeInputState extends State<KwSecurityCodeInput> {
                     )),
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Didn't receive the code? ",
-                    style: TextStyle(color: Colors.black54, fontSize: size15),
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      minimumSize: const Size(size50, size30),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    onPressed: widget.resendOtp,
-                    child: const Text(
-                      "Resend Code",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
+                  Padding(
+                    padding: const EdgeInsets.only(left: size20),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(size50, size30),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      onPressed: widget.resendOtp,
+                      child: const Text(
+                        "Resend Code",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      ),
                     ),
                   )
                 ],
